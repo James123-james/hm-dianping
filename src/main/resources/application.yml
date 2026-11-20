@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: hmdp
+  datasource:
+    url: jdbc:mysql://${review.datasource.host}:${review.datasource.port}/${review.datasource.database}?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+    username: ${review.datasource.username}
+    password: ${review.datasource.password}
+    driver-class-name: ${review.datasource.driver-class-name}
+  redis:
+    host: ${review.redis.host}
+    port: ${review.redis.port}
+    lettuce:
+      pool:
+        max-active: ${review.redis.lettuce.pool.max-active}
+        max-idle: ${review.redis.lettuce.pool.max-idle}
+        min-idle: ${review.redis.lettuce.pool.min-idle}
+        time-between-eviction-runs: ${review.redis.lettuce.pool.time-between-eviction-runs}
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  type-aliases-package: com.hmdp
+logging:
+  level:
+    com.hmdp: debug
+
